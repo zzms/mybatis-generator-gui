@@ -1,0 +1,121 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="description" content="Bootstrap Admin App + jQuery"/>
+    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin"/>
+    <title>云收藏</title>
+    <link rel="icon" href="/img/icon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" th:href="@{/vendor/fontawesome/css/font-awesome.min.css}"></link>
+    <link rel="stylesheet" th:href="@{/vendor/simple-line-icons/css/simple-line-icons.css}"></link>
+    <link rel="stylesheet" th:href="@{/media/css/bootstrap.css}" id="bscss"></link>
+    <link rel="stylesheet" th:href="@{/media/css/app.css}" id="maincss"></link>
+    <link rel="stylesheet" th:href="@{/media/css/theme-i.css}" id="maincss"></link>
+</head>
+<body>
+<div class="wrapper">
+    <div class="block-center mt-xl wd-xl">
+        <div class="panel panel-dark panel-flat">
+            <div class="panel-heading text-center">
+                <a th:href="@{/index}">
+                    <img th:src="@{/img/logo.png}"  alt="Image" class="block-center img-rounded"/>
+                </a>
+            </div>
+            <div class="panel-body" id="loginPage">
+                <p class="text-center pv">请登录</p>
+                <form id="form" data-parsley-validate="true" onsubmit="return false">
+                    <div class="form-group has-feedback">
+                        <input type="text" placeholder="邮箱地址或登录名称" id="username" class="form-control" data-parsley-error-message="请输入邮箱地址或登录名称" required="required" />
+                        <span class="fa fa-envelope form-control-feedback text-muted"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="password" placeholder="密码" id="password" class="form-control" data-parsley-error-message="请输入密码" required="required" />
+                        <span class="fa fa-lock form-control-feedback text-muted"></span>
+                    </div>
+                    <div class="clearfix">
+                        <div class="pull-right">
+                            <a href="/forgotPassword" class="text-muted">忘记密码？</a>
+                        </div>
+                    </div>
+                    <button  id="btnLogin" class="btn btn-block btn-primary mt-lg">登录</button>
+                </form>
+                <!-- <p class="pt-lg text-center">社会化登录</p>
+                <div class="text-center">
+                   <a href="javascript:void(0);">
+                      <span class="fa-stack fa-2x mr"> <i class="fa fa-circle-thin fa-stack-2x"></i> <i class="fa fa-qq fa-stack-1x"></i>
+                      </span>
+                   </a>
+                   <a href="javascript:void(0);">
+                      <span class="fa-stack fa-2x">
+                         <i class="fa fa-circle-thin fa-stack-2x"></i>
+                         <i class="fa fa-weibo fa-stack-1x"></i>
+                      </span>
+                   </a>
+                   <a href="javascript:void(0);">
+                      <span class="fa-stack fa-2x ml">
+                         <i class="fa fa-circle-thin fa-stack-2x"></i>
+                         <i class="fa fa-wechat fa-stack-1x"></i>
+                      </span>
+                   </a>
+                </div> -->
+                <p></p>
+                <div id="errorMsg" class="alert alert-danger text-center" style="display:none;"></div>
+                <p class="pt-lg text-center">需要注册？</p>
+                <a href="/register" class="btn btn-block btn-default">现在就注册</a>
+            </div>
+        </div>
+        <div class="p-lg text-center">
+            <span>&copy;</span>
+            <span>2016</span>
+            <span>-</span>
+            <span>2018</span>
+            <br/>
+            <span>cloudfavorites@126.com</span>
+        </div>
+    </div>
+</div>
+<!-- 引入url -->
+<input type="hidden" id="basePathUrl"/>
+</body>
+
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+    var basePath = /*[[${#httpServletRequest.getScheme() + "://" + #httpServletRequest.getServerName() + ":" + #httpServletRequest.getServerPort() + #httpServletRequest.getContextPath()}]]*/;
+    function getBaseUrl() {
+        $("#basePathUrl").val(basePath);
+        var a = $("#basePathUrl").val();
+        return a;
+    }
+    /*]]>*/
+</script>
+<script type='text/javascript' >
+    $(document).ready(function () {
+
+
+        var url=getBaseUrl()+ "/user/login";
+        $("#btnLogin").on("click",function () {
+            var data={};
+            data.userName=$("#username").val();
+            data.password=$("#password").val();
+            console.log(data)
+            $.ajax({
+                url : url,
+                type : "POST",
+                async : true,
+                contentType : "application/json",
+                data : JSON.stringify(data),
+                dataType : 'json',
+                success : function(msg) {
+                    if (msg.code == "200") {
+                        window.location.href=getBaseUrl()+ "/home/index";
+                    }else {
+                        alert(msg.message);
+                    }
+                }
+            });
+        })
+})
+</script>
+</html>

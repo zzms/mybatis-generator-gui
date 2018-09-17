@@ -1,0 +1,35 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+
+mybatis:
+          config-locations: classpath:mybatis/mybatis-config.xml
+          mapper-locations: classpath:mybatis/mapping/*.xml
+
+
+spring:
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: 123456
+        url: jdbc:mysql://localhost:3306/favourite_web?charset=utf8mb4&serverTimezone=UTC&storage_engine=InnoDB
+        tomcat:
+            default-auto-commit: false
+            initial-size: 15
+            max-active: 20
+            min-idle: 15
+            test-while-idle: true
+            validation-query: select 1
+    thymeleaf:
+         mode: LEGACYHTML5
+         cache: false
+         prefix: classpath:/templates/
+         suffix: .html
+         check-template-location: true
+         enabled: true
+         encoding: UTF-8
+    application:
+      name: favourite
+debug: true
