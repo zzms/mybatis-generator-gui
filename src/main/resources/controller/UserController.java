@@ -7,7 +7,6 @@ import /packageName/.common.exception.SimpleErrorException;
 import /packageName/.dao.entity.User;
 import /packageName/.service.IUserService;
 import /packageName/.web.view.input.LoginInput;
-import /packageName/.web.view.output.LoginOutput;
 import /packageName/.web.view.output.mapper.LoginMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

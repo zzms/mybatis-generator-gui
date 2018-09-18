@@ -5,8 +5,8 @@ server:
 
 
 mybatis:
-          config-locations: classpath:mybatis/mybatis-config.xml
-          mapper-locations: classpath:mybatis/mapping/*.xml
+         config-locations: classpath:mybatis/mybatis-config.xml
+         mapper-locations: classpath*:<packageName>/dao/mapping/*.xml
 
 
 spring:
