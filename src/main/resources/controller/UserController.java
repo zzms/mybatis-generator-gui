@@ -1,14 +1,14 @@
-package com.css.platform.web.controller;
+package /packageName/.web.controller;
 
-import com.css.platform.common.config.Const;
-import com.css.platform.common.exception.ErrorCode;
-import com.css.platform.common.exception.ResponseData;
-import com.css.platform.common.exception.SimpleErrorException;
-import com.css.platform.domain.User;
-import com.css.platform.service.IUserService;
-import com.css.platform.web.view.input.LoginInput;
-import com.css.platform.web.view.output.LoginOutput;
-import com.css.platform.web.view.output.mapper.LoginMapper;
+import /packageName/.common.config.Const;
+import /packageName/.common.exception.ErrorCode;
+import /packageName/.common.exception.ResponseData;
+import /packageName/.common.exception.SimpleErrorException;
+import /packageName/.dao.entity.User;
+import /packageName/.service.IUserService;
+import /packageName/.web.view.input.LoginInput;
+import /packageName/.web.view.output.LoginOutput;
+import /packageName/.web.view.output.mapper.LoginMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +41,7 @@ public class UserController extends BaseController {
         if (login == null) {
            return new ResponseData(ErrorCode.ERROR_LOGIN);
         }else {
-            LoginOutput loginOutput = LoginMapper.INSTANTCE.userToLoginOutput(login);
+            LoginOutput loginOutput = new LoginOutput();
             setSessioinValue(request, Const.USER_SESSION,loginOutput);
             return new ResponseData(ErrorCode.SUCCESS);
         }

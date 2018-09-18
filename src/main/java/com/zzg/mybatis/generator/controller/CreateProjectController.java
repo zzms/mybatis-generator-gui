@@ -114,12 +114,30 @@ public class CreateProjectController extends BaseFXController {
             replacePackage( copyFile(logAdvice.getPath(),packageFolder+"\\web\\aop"),"/packageName/",createProjectConfig.getPackageName());
 
 
+            // web/view//input
+            URL authorizeBase = this.getClass().getResource("/view/input/AuthorizeBase.java");
+            replacePackage( copyFile(authorizeBase.getPath(),packageFolder+"\\web\\view\\input"),"/packageName/",createProjectConfig.getPackageName());
+            URL loginInput= this.getClass().getResource("/view/input/LoginInput.java");
+            replacePackage( copyFile(loginInput.getPath(),packageFolder+"\\web\\view\\input"),"/packageName/",createProjectConfig.getPackageName());
+
+            // web/view//output
+//            URL loginMapper = this.getClass().getResource("/view/output/mapper/LoginMapper.java");
+//            replacePackage( copyFile(loginMapper.getPath(),packageFolder+"\\web\\view\\output\\mapper"),"/packageName/",createProjectConfig.getPackageName());
+            URL loginOutput= this.getClass().getResource("/view/output/LoginOutput.java");
+            replacePackage( copyFile(loginOutput.getPath(),packageFolder+"\\web\\view\\output"),"/packageName/",createProjectConfig.getPackageName());
+
 
             // web/filter
             URL loginFilter = this.getClass().getResource("/filter/LoginFilter.java");
             replacePackage( copyFile(loginFilter.getPath(),packageFolder+"\\web\\filter"),"/packageName/",createProjectConfig.getPackageName());
             URL xssAndSqlFilter = this.getClass().getResource("/filter/XssAndSqlFilter.java");
             replacePackage( copyFile(xssAndSqlFilter.getPath(),packageFolder+"\\web\\filter"),"/packageName/",createProjectConfig.getPackageName());
+
+            //service
+            URL userService = this.getClass().getResource("/service/IUserService.java");
+            replacePackage( copyFile(userService.getPath(),packageFolder+"\\service"),"/packageName/",createProjectConfig.getPackageName());
+            URL userServiceImpl = this.getClass().getResource("/service/impl/UserServiceImpl.java");
+            replacePackage( copyFile(userServiceImpl.getPath(),packageFolder+"\\service\\impl"),"/packageName/",createProjectConfig.getPackageName());
 
 
             // common/config
